@@ -17,14 +17,23 @@ import DeadlineManager from './components/DeadlineManager';
 import NoticeSummarizer from './components/NoticeSummarizer';
 import Integrations from './components/Integrations';
 
-// Set base URL for axios requests
-axios.defaults.baseURL = 'http://localhost:5000';
+// Load saved backend URL
+const getInitialBackendUrl = () => {
+  const saved = localStorage.getItem('campusflow_backend_url');
+  if (saved) return saved;
+  return import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+};
+
+axios.defaults.baseURL = getInitialBackendUrl();
 
 export default function App() {
   const [currentStudent, setCurrentStudent] = useState(null);
   const [availableStudents, setAvailableStudents] = useState([]);
   const [activeTab, setActiveTab] = useState('dashboard');
   const [loading, setLoading] = useState(true);
+  const [backendUrl, setBackendUrl] = useState(getInitialBackendUrl());
+  const [connectionError, setConnectionError] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   // Dynamic user profile state for the sidebar
   const [userProfile, setUserProfile] = useState({
@@ -100,10 +109,12 @@ export default function App() {
 
   const fetchStudents = async () => {
     try {
+      setConnectionError(false);
       const res = await axios.get('/api/students');
       setAvailableStudents(res.data);
     } catch (err) {
       console.error("Failed to load students", err);
+      setConnectionError(true);
     }
   };
 
@@ -213,9 +224,50 @@ export default function App() {
 
           {/* Right panel: Login / Register forms */}
           <div className="md:col-span-7 flex flex-col justify-center p-8 md:p-10 rounded-2xl border-2 border-primary-900 bg-white shadow-retro relative">
-            <h2 className="text-2xl font-bold font-serif text-primary-900 mb-6">
-              Get Started
-            </h2>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold font-serif text-primary-900">
+                Get Started
+              </h2>
+              <button
+                type="button"
+                onClick={() => setShowSettings(!showSettings)}
+                className="text-[10px] font-bold text-slate-500 hover:text-primary-900 uppercase tracking-wider underline cursor-pointer"
+              >
+                {showSettings ? 'Hide Config' : 'Connection Config'}
+              </button>
+            </div>
+
+            {(showSettings || connectionError) && (
+              <div className="mb-6 p-4 bg-accent-yellowLight border-2 border-primary-900 rounded-xl text-xs text-primary-900 space-y-2">
+                <p className="font-bold uppercase tracking-wider text-[10px] text-amber-800 flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+                  🔌 Backend Connection Settings
+                </p>
+                <p className="font-semibold text-slate-700 leading-normal">
+                  Configure the backend API URL. If running locally, keep it as <code className="bg-white/60 px-1 py-0.5 rounded border border-primary-900/10">http://localhost:5000</code>.
+                </p>
+                <div className="flex gap-2 items-center mt-1">
+                  <input
+                    type="text"
+                    placeholder="Paste Render/ngrok URL (https://...)"
+                    value={backendUrl}
+                    onChange={e => setBackendUrl(e.target.value)}
+                    className="flex-1 bg-white border-2 border-primary-900 focus:outline-none rounded-lg px-2.5 py-1.5 text-[11px] font-sans text-primary-900"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      localStorage.setItem('campusflow_backend_url', backendUrl);
+                      axios.defaults.baseURL = backendUrl;
+                      fetchStudents();
+                    }}
+                    className="px-3 py-1.5 bg-accent-yellow hover:bg-yellow-400 border-2 border-primary-900 text-[10px] font-bold rounded-lg shadow-retro-sm active:translate-y-0.5 active:shadow-none transition-all"
+                  >
+                    Connect
+                  </button>
+                </div>
+              </div>
+            )}
 
             {/* Quick Demo Login selector */}
             {availableStudents.length > 0 && (
