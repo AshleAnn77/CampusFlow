@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #FAF6EB;
+    /* Soft, sparse drafting grid lines (spaced by 40px, 3% opacity to prevent clutter) */
+    background-image: 
+      linear-gradient(to right, rgba(30, 58, 138, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(30, 58, 138, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  /* Retro 3D Hard Outline Card */
+  .retro-card {
+    @apply bg-white border-2 border-primary-900 rounded-2xl shadow-retro transition-all duration-200;
+  }
+
+  .retro-card-hover {
+    @apply hover:-translate-y-0.5 hover:shadow-retro-lg active:translate-y-0.5 active:shadow-retro-sm;
+  }
+
+  /* Retro Buttons with Hard Outline & Hard Shadows */
+  .btn-retro {
+    @apply px-4 py-2.5 bg-accent-yellow hover:bg-yellow-400 text-primary-900 border-2 border-primary-900 font-bold rounded-xl shadow-retro hover:shadow-retro-lg active:translate-x-0.5 active:translate-y-0.5 active:shadow-retro-sm transition-all duration-150 flex items-center justify-center gap-2 select-none disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-retro-secondary {
+    @apply px-4 py-2.5 bg-white hover:bg-slate-50 text-primary-900 border-2 border-primary-900 font-bold rounded-xl shadow-retro hover:shadow-retro-lg active:translate-x-0.5 active:translate-y-0.5 active:shadow-retro-sm transition-all duration-150 flex items-center justify-center gap-2 select-none disabled:opacity-50;
+  }
+
+  .btn-retro-blue {
+    @apply px-4 py-2.5 bg-primary-100 hover:bg-primary-50 text-primary-900 border-2 border-primary-900 font-bold rounded-xl shadow-retro hover:shadow-retro-lg active:translate-x-0.5 active:translate-y-0.5 active:shadow-retro-sm transition-all duration-150 flex items-center justify-center gap-2 select-none disabled:opacity-50;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF6EB;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E3A8A;
+  border: 2px solid #FAF6EB;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1e40af;
+}
+
+/* Flip Card styles */
+.flip-card {
+  perspective: 1000px;
+}
+.flip-card-inner {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.flip-card-inner.flipped {
+  transform: rotateY(180deg);
+}
+.flip-card-front, .flip-card-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-card-back {
+  transform: rotateY(180deg);
+}

@@ -1,0 +1,182 @@
+{
+  "name": "CampusFlow - Deadline Reminder Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "deadline-reminder",
+        "options": {}
+      },
+      "id": "webhook-node-id",
+      "name": "Webhook Node",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "formattedDeadline",
+              "value": "={{ $json.body.deadline }}"
+            },
+            {
+              "name": "reminderTime",
+              "value": "={{ new Date(new Date($json.body.deadline).getTime() - 24 * 60 * 60 * 1000).toISOString() }}"
+            },
+            {
+              "name": "finalNudgeTime",
+              "value": "={{ new Date(new Date($json.body.deadline).getTime() - 1 * 60 * 60 * 1000).toISOString() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "set-node-id",
+      "name": "Set Date Offsets",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "primary",
+          "mode": "list"
+        },
+        "start": "={{ $json.formattedDeadline }}",
+        "end": "={{ new Date(new Date($json.formattedDeadline).getTime() + 60 * 60 * 1000).toISOString() }}",
+        "summary": "={{ $json.taskTitle }} [CampusFlow]",
+        "description": "=Subject: {{ $json.subject }}\nDeadline reminder automated by CampusFlow.",
+        "additionalFields": {
+          "attendees": [
+            "={{ $node[\"Webhook Node\"].json.body.email }}"
+          ]
+        }
+      },
+      "id": "gcal-node-id",
+      "name": "Google Calendar Node",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [650, 200]
+    },
+    {
+      "parameters": {
+        "resumeAmount": 1,
+        "resumeUnit": "hours",
+        "resumeType": "date",
+        "dateTime": "={{ $json.reminderTime }}"
+      },
+      "id": "wait-24h-node-id",
+      "name": "Wait Until 24H Before",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [650, 380]
+    },
+    {
+      "parameters": {
+        "phoneNumberProvider": "twilio",
+        "messageType": "whatsapp",
+        "from": "+14155238886",
+        "to": "={{ $node[\"Webhook Node\"].json.body.phone }}",
+        "message": "=⏰ Hi {{ $node[\"Webhook Node\"].json.body.studentName }}! Your {{ $node[\"Webhook Node\"].json.body.subject }} task '{{ $node[\"Webhook Node\"].json.body.taskTitle }}' is due tomorrow! Check your Google Calendar. — CampusFlow 🎓"
+      },
+      "id": "twilio-24h-node-id",
+      "name": "WhatsApp 24h Reminder",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [850, 380]
+    },
+    {
+      "parameters": {
+        "resumeAmount": 1,
+        "resumeUnit": "hours",
+        "resumeType": "date",
+        "dateTime": "={{ $node[\"Set Date Offsets\"].json.finalNudgeTime }}"
+      },
+      "id": "wait-1h-node-id",
+      "name": "Wait Until 1H Before",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [1050, 380]
+    },
+    {
+      "parameters": {
+        "phoneNumberProvider": "twilio",
+        "messageType": "whatsapp",
+        "from": "+14155238886",
+        "to": "={{ $node[\"Webhook Node\"].json.body.phone }}",
+        "message": "=🚨 Final Nudge! Hi {{ $node[\"Webhook Node\"].json.body.studentName }}! '{{ $node[\"Webhook Node\"].json.body.taskTitle }}' is due in 1 hour! Submit now. — CampusFlow 🎓"
+      },
+      "id": "twilio-1h-node-id",
+      "name": "WhatsApp 1h Nudge",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [1250, 380]
+    }
+  ],
+  "connections": {
+    "Webhook Node": {
+      "main": [
+        [
+          {
+            "node": "Set Date Offsets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Date Offsets": {
+      "main": [
+        [
+          {
+            "node": "Google Calendar Node",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait Until 24H Before",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait Until 24H Before": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp 24h Reminder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp 24h Reminder": {
+      "main": [
+        [
+          {
+            "node": "Wait Until 1H Before",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait Until 1H Before": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp 1h Nudge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

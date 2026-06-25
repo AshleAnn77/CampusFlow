@@ -1,0 +1,644 @@
+{
+  "students": [
+    {
+      "id": "student-1",
+      "name": "Rohan Verma",
+      "branch": "Computer Science & Engineering",
+      "year": "3rd Year",
+      "subjects": [
+        "DBMS",
+        "Operating Systems",
+        "Computer Networks",
+        "Software Engineering"
+      ],
+      "phone": "+919876543210",
+      "email": "rohan.verma@college.edu"
+    }
+  ],
+  "settings": {
+    "geminiApiKey": "",
+    "twilioAccountSid": "",
+    "twilioAuthToken": "",
+    "twilioWhatsappSender": "",
+    "recipientPhone": "8431325411",
+    "classroomClient": "ashle.ann@btech.christuniversity.in",
+    "kpRollNumber": "2462049",
+    "kpPassword": "11908190",
+    "deadlineAlerts": true,
+    "noticeAlerts": true
+  },
+  "attendance": [
+    {
+      "subject": "DBMS",
+      "attended": 50,
+      "total": 63
+    },
+    {
+      "subject": "Operating Systems",
+      "attended": 40,
+      "total": 57
+    },
+    {
+      "subject": "Computer Networks",
+      "attended": 52,
+      "total": 61
+    },
+    {
+      "subject": "Software Engineering",
+      "attended": 53,
+      "total": 61
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-1",
+      "studentId": "student-1",
+      "title": "DBMS Assignment 2 - Normalization & SQL Queries",
+      "subject": "DBMS",
+      "deadline": "2026-06-28T23:59:00.000Z",
+      "reminderTime": "2026-06-27T23:59:00.000Z",
+      "addToCalendar": true,
+      "status": "pending",
+      "createdAt": "2026-06-25T09:30:00.000Z"
+    },
+    {
+      "id": "task-2",
+      "studentId": "student-1",
+      "title": "Operating Systems Lab - Semaphore Implementation",
+      "subject": "Operating Systems",
+      "deadline": "2026-06-30T17:00:00.000Z",
+      "reminderTime": "2026-06-29T17:00:00.000Z",
+      "addToCalendar": true,
+      "status": "pending",
+      "createdAt": "2026-06-25T09:35:00.000Z"
+    },
+    {
+      "id": "task-sync-8d66e417",
+      "studentId": "student-1",
+      "title": "Computer Networks Lab - Socket Programming in Python",
+      "subject": "Computer Networks",
+      "deadline": "2026-06-29T04:49:24.100Z",
+      "reminderTime": "2026-06-28T04:49:24.100Z",
+      "addToCalendar": true,
+      "status": "pending",
+      "createdAt": "2026-06-25T04:49:24.100Z"
+    },
+    {
+      "id": "task-sync-03c9c45e",
+      "studentId": "student-1",
+      "title": "Software Engineering - Software Requirement Specification (SRS) Document",
+      "subject": "Software Engineering",
+      "deadline": "2026-07-01T04:49:24.100Z",
+      "reminderTime": "2026-06-30T04:49:24.100Z",
+      "addToCalendar": true,
+      "status": "pending",
+      "createdAt": "2026-06-25T04:49:24.100Z"
+    }
+  ],
+  "flashcards": [],
+  "quizzes": [],
+  "automationsLog": [
+    {
+      "id": "log-27c56474",
+      "timestamp": "2026-06-25T06:23:37.847Z",
+      "webhookName": "Google Classroom Sync",
+      "payload": {
+        "action": "Google Classroom Sync",
+        "clientConfigured": true,
+        "studentEmail": "rohan.verma@college.edu",
+        "tasksPulled": 0
+      },
+      "status": "Success"
+    },
+    {
+      "id": "log-82f71df5",
+      "timestamp": "2026-06-25T06:16:29.221Z",
+      "webhookName": "Student Portal Sync",
+      "payload": {
+        "action": "Student Portal Sync",
+        "rollNumber": "2462049",
+        "hasCredentials": true,
+        "attendanceStats": [
+          {
+            "subject": "DBMS",
+            "attended": 50,
+            "total": 63
+          },
+          {
+            "subject": "Operating Systems",
+            "attended": 40,
+            "total": 57
+          },
+          {
+            "subject": "Computer Networks",
+            "attended": 52,
+            "total": 61
+          },
+          {
+            "subject": "Software Engineering",
+            "attended": 53,
+            "total": 61
+          }
+        ]
+      },
+      "status": "Success"
+    },
+    {
+      "id": "log-3959b996",
+      "timestamp": "2026-06-25T06:16:27.738Z",
+      "webhookName": "Google Classroom Sync",
+      "payload": {
+        "action": "Google Classroom Sync",
+        "clientConfigured": true,
+        "studentEmail": "rohan.verma@college.edu",
+        "tasksPulled": 0
+      },
+      "status": "Success"
+    },
+    {
+      "id": "log-3f880078",
+      "timestamp": "2026-06-25T06:11:26.008Z",
+      "webhookName": "WhatsApp Direct Ping (Simulation)",
+      "payload": {
+        "to": "whatsapp:+919876543210",
+        "from": "whatsapp:+14155238886",
+        "body": "Hi! This is a test message from your CampusFlow platform. Your WhatsApp integration is active! 🚀"
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-b8e097a1",
+      "timestamp": "2026-06-25T06:11:04.829Z",
+      "webhookName": "Knowledge Pro Sync",
+      "payload": {
+        "action": "Christ Knowledge Pro Sync",
+        "rollNumber": "2462049",
+        "hasCredentials": true,
+        "attendanceStats": [
+          {
+            "subject": "DBMS",
+            "attended": 49,
+            "total": 61
+          },
+          {
+            "subject": "Operating Systems",
+            "attended": 40,
+            "total": 56
+          },
+          {
+            "subject": "Computer Networks",
+            "attended": 51,
+            "total": 60
+          },
+          {
+            "subject": "Software Engineering",
+            "attended": 53,
+            "total": 60
+          }
+        ]
+      },
+      "status": "Success"
+    },
+    {
+      "id": "log-65ebeccb",
+      "timestamp": "2026-06-25T06:11:03.518Z",
+      "webhookName": "Google Classroom Sync",
+      "payload": {
+        "action": "Google Classroom Sync",
+        "clientConfigured": true,
+        "studentEmail": "rohan.verma@college.edu",
+        "tasksPulled": 0
+      },
+      "status": "Success"
+    },
+    {
+      "id": "log-9d0db6fd",
+      "timestamp": "2026-06-25T06:10:59.050Z",
+      "webhookName": "Knowledge Pro Sync",
+      "payload": {
+        "action": "Christ Knowledge Pro Sync",
+        "rollNumber": "2462049",
+        "hasCredentials": true,
+        "attendanceStats": [
+          {
+            "subject": "DBMS",
+            "attended": 48,
+            "total": 59
+          },
+          {
+            "subject": "Operating Systems",
+            "attended": 38,
+            "total": 54
+          },
+          {
+            "subject": "Computer Networks",
+            "attended": 50,
+            "total": 59
+          },
+          {
+            "subject": "Software Engineering",
+            "attended": 53,
+            "total": 60
+          }
+        ]
+      },
+      "status": "Success"
+    },
+    {
+      "id": "log-90542668",
+      "timestamp": "2026-06-25T06:08:59.967Z",
+      "webhookName": "Knowledge Pro Sync",
+      "payload": {
+        "action": "Christ Knowledge Pro Sync",
+        "rollNumber": "Demo_3rd_Year",
+        "hasCredentials": false,
+        "attendanceStats": [
+          {
+            "subject": "DBMS",
+            "attended": 48,
+            "total": 59
+          },
+          {
+            "subject": "Operating Systems",
+            "attended": 36,
+            "total": 52
+          },
+          {
+            "subject": "Computer Networks",
+            "attended": 49,
+            "total": 57
+          },
+          {
+            "subject": "Software Engineering",
+            "attended": 53,
+            "total": 60
+          }
+        ]
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-03063da1",
+      "timestamp": "2026-06-25T05:58:41.393Z",
+      "webhookName": "Knowledge Pro Sync",
+      "payload": {
+        "action": "Christ Knowledge Pro Sync",
+        "rollNumber": "Demo_3rd_Year",
+        "hasCredentials": false,
+        "attendanceStats": [
+          {
+            "subject": "DBMS",
+            "attended": 46,
+            "total": 57
+          },
+          {
+            "subject": "Operating Systems",
+            "attended": 36,
+            "total": 52
+          },
+          {
+            "subject": "Computer Networks",
+            "attended": 47,
+            "total": 55
+          },
+          {
+            "subject": "Software Engineering",
+            "attended": 53,
+            "total": 59
+          }
+        ]
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-0b5da411",
+      "timestamp": "2026-06-25T05:58:39.963Z",
+      "webhookName": "Google Classroom Sync",
+      "payload": {
+        "action": "Google Classroom Sync",
+        "clientConfigured": false,
+        "studentEmail": "rohan.verma@college.edu",
+        "tasksPulled": 0
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-36d1dbb2",
+      "timestamp": "2026-06-25T05:58:31.479Z",
+      "webhookName": "WhatsApp Direct Ping (Simulation)",
+      "payload": {
+        "to": "whatsapp:+919876543210",
+        "from": "whatsapp:+14155238886",
+        "body": "Hi! This is a test message from your CampusFlow platform. Your WhatsApp integration is active! 🚀"
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-0789ba64",
+      "timestamp": "2026-06-25T05:57:27.755Z",
+      "webhookName": "WhatsApp Direct Ping (Simulation)",
+      "payload": {
+        "to": "whatsapp:+919876543210",
+        "from": "whatsapp:+14155238886",
+        "body": "Hi! This is a test message from your CampusFlow platform. Your WhatsApp integration is active! 🚀"
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-59da9396",
+      "timestamp": "2026-06-25T05:56:56.081Z",
+      "webhookName": "Google Classroom Sync",
+      "payload": {
+        "action": "Google Classroom Sync",
+        "clientConfigured": false,
+        "studentEmail": "rohan.verma@college.edu",
+        "tasksPulled": 0
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-7ab35009",
+      "timestamp": "2026-06-25T05:56:52.727Z",
+      "webhookName": "Knowledge Pro Sync",
+      "payload": {
+        "action": "Christ Knowledge Pro Sync",
+        "rollNumber": "Demo_3rd_Year",
+        "hasCredentials": false,
+        "attendanceStats": [
+          {
+            "subject": "DBMS",
+            "attended": 45,
+            "total": 55
+          },
+          {
+            "subject": "Operating Systems",
+            "attended": 35,
+            "total": 50
+          },
+          {
+            "subject": "Computer Networks",
+            "attended": 47,
+            "total": 55
+          },
+          {
+            "subject": "Software Engineering",
+            "attended": 51,
+            "total": 57
+          }
+        ]
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-166de5be",
+      "timestamp": "2026-06-25T05:56:44.271Z",
+      "webhookName": "Google Classroom Sync",
+      "payload": {
+        "action": "Google Classroom Sync",
+        "clientConfigured": false,
+        "studentEmail": "rohan.verma@college.edu",
+        "tasksPulled": 0
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-653f24e9",
+      "timestamp": "2026-06-25T05:56:35.659Z",
+      "webhookName": "Knowledge Pro Sync",
+      "payload": {
+        "action": "Christ Knowledge Pro Sync",
+        "rollNumber": "Demo_3rd_Year",
+        "hasCredentials": false,
+        "attendanceStats": [
+          {
+            "subject": "DBMS",
+            "attended": 45,
+            "total": 55
+          },
+          {
+            "subject": "Operating Systems",
+            "attended": 35,
+            "total": 50
+          },
+          {
+            "subject": "Computer Networks",
+            "attended": 45,
+            "total": 53
+          },
+          {
+            "subject": "Software Engineering",
+            "attended": 50,
+            "total": 56
+          }
+        ]
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-d19e8ac2",
+      "timestamp": "2026-06-25T05:56:13.355Z",
+      "webhookName": "Google Classroom Sync",
+      "payload": {
+        "action": "Google Classroom Sync",
+        "clientConfigured": false,
+        "studentEmail": "rohan.verma@college.edu",
+        "tasksPulled": 0
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-946e3bc2",
+      "timestamp": "2026-06-25T05:47:09.066Z",
+      "webhookName": "Knowledge Pro Sync",
+      "payload": {
+        "action": "Christ Knowledge Pro Sync",
+        "rollNumber": "Demo_3rd_Year",
+        "hasCredentials": false,
+        "attendanceStats": [
+          {
+            "subject": "DBMS",
+            "attended": 44,
+            "total": 53
+          },
+          {
+            "subject": "Operating Systems",
+            "attended": 35,
+            "total": 50
+          },
+          {
+            "subject": "Computer Networks",
+            "attended": 45,
+            "total": 52
+          },
+          {
+            "subject": "Software Engineering",
+            "attended": 48,
+            "total": 54
+          }
+        ]
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-90d955a3",
+      "timestamp": "2026-06-25T05:47:04.461Z",
+      "webhookName": "Google Classroom Sync",
+      "payload": {
+        "action": "Google Classroom Sync",
+        "clientConfigured": false,
+        "studentEmail": "rohan.verma@college.edu",
+        "tasksPulled": 0
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-be5c8880",
+      "timestamp": "2026-06-25T05:11:56.662Z",
+      "webhookName": "WhatsApp Direct Ping",
+      "payload": {
+        "to": "whatsapp:+918431325411",
+        "from": "whatsapp:+14155238886",
+        "body": "Hi! This is a test message from your CampusFlow platform. Your WhatsApp integration is active! 🚀"
+      },
+      "status": "Success"
+    },
+    {
+      "id": "log-a1784cdc",
+      "timestamp": "2026-06-25T05:11:44.971Z",
+      "webhookName": "Google Classroom Sync",
+      "payload": {
+        "action": "Google Classroom Sync",
+        "clientConfigured": false,
+        "studentEmail": "rohan.verma@college.edu",
+        "tasksPulled": 0
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-3b709d94",
+      "timestamp": "2026-06-25T05:11:32.120Z",
+      "webhookName": "WhatsApp Direct Ping",
+      "payload": {
+        "to": "whatsapp:+918431325411",
+        "from": "whatsapp:+14155238886",
+        "body": "Hi! This is a test message from your CampusFlow platform. Your WhatsApp integration is active! 🚀"
+      },
+      "status": "Success"
+    },
+    {
+      "id": "log-68de09ec",
+      "timestamp": "2026-06-25T05:11:18.577Z",
+      "webhookName": "Knowledge Pro Sync",
+      "payload": {
+        "action": "Christ Knowledge Pro Sync",
+        "rollNumber": "Demo_3rd_Year",
+        "hasCredentials": false,
+        "attendanceStats": [
+          {
+            "subject": "DBMS",
+            "attended": 43,
+            "total": 52
+          },
+          {
+            "subject": "Operating Systems",
+            "attended": 35,
+            "total": 50
+          },
+          {
+            "subject": "Computer Networks",
+            "attended": 45,
+            "total": 51
+          },
+          {
+            "subject": "Software Engineering",
+            "attended": 46,
+            "total": 52
+          }
+        ]
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-22bfdbce",
+      "timestamp": "2026-06-25T05:11:16.846Z",
+      "webhookName": "Google Classroom Sync",
+      "payload": {
+        "action": "Google Classroom Sync",
+        "clientConfigured": false,
+        "studentEmail": "rohan.verma@college.edu",
+        "tasksPulled": 0
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-824697e4",
+      "timestamp": "2026-06-25T04:49:26.486Z",
+      "webhookName": "Knowledge Pro Sync",
+      "payload": {
+        "action": "Christ Knowledge Pro Sync",
+        "rollNumber": "Demo_3rd_Year",
+        "hasCredentials": false,
+        "attendanceStats": [
+          {
+            "subject": "DBMS",
+            "attended": 41,
+            "total": 50
+          },
+          {
+            "subject": "Operating Systems",
+            "attended": 35,
+            "total": 50
+          },
+          {
+            "subject": "Computer Networks",
+            "attended": 45,
+            "total": 51
+          },
+          {
+            "subject": "Software Engineering",
+            "attended": 45,
+            "total": 51
+          }
+        ]
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-30e967e9",
+      "timestamp": "2026-06-25T04:49:25.296Z",
+      "webhookName": "Google Classroom Sync",
+      "payload": {
+        "action": "Google Classroom Sync",
+        "clientConfigured": false,
+        "studentEmail": "rohan.verma@college.edu",
+        "tasksPulled": 0
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-62749d53",
+      "timestamp": "2026-06-25T04:49:24.104Z",
+      "webhookName": "Google Classroom Sync",
+      "payload": {
+        "action": "Google Classroom Sync",
+        "clientConfigured": false,
+        "studentEmail": "rohan.verma@college.edu",
+        "tasksPulled": 2
+      },
+      "status": "Simulated Success"
+    },
+    {
+      "id": "log-1",
+      "timestamp": "2026-06-25T09:35:05.000Z",
+      "webhookName": "Deadline Reminder",
+      "payload": {
+        "studentName": "Rohan Verma",
+        "phone": "+919876543210",
+        "subject": "Operating Systems",
+        "deadline": "2026-06-30T17:00:00.000Z",
+        "taskTitle": "Operating Systems Lab - Semaphore Implementation"
+      },
+      "status": "Simulated Success"
+    }
+  ]
+}

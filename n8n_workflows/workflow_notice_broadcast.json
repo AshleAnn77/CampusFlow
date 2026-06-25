@@ -1,0 +1,89 @@
+{
+  "name": "CampusFlow - Notice Broadcast Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "notice-broadcast",
+        "options": {}
+      },
+      "id": "notice-webhook-id",
+      "name": "Webhook Node",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [100, 300]
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "primary",
+          "mode": "list"
+        },
+        "start": "={{ $json.body.eventDate }}",
+        "end": "={{ new Date(new Date($json.body.eventDate).getTime() + 2 * 60 * 60 * 1000).toISOString() }}",
+        "summary": "={{ $json.body.eventTitle }} [Broadcast Notice]",
+        "description": "={{ $json.body.noticeText }}"
+      },
+      "id": "notice-gcal-id",
+      "name": "Google Calendar Node",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [300, 200]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "body.phoneList",
+        "options": {}
+      },
+      "id": "loop-node-id",
+      "name": "Loop Over Students",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [300, 380]
+    },
+    {
+      "parameters": {
+        "phoneNumberProvider": "twilio",
+        "messageType": "whatsapp",
+        "from": "+14155238886",
+        "to": "={{ $json.phoneList }}",
+        "message": "=📢 *CAMPUS NOTICE ALERT*\n\n🔔 *{{ $node[\"Webhook Node\"].json.body.eventTitle }}*\nDate: {{ new Date($node[\"Webhook Node\"].json.body.eventDate).toLocaleDateString() }}\n\nAdded to your academic calendar. Stay updated! — CampusFlow 🎓"
+      },
+      "id": "notice-twilio-id",
+      "name": "WhatsApp Broadcast",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [550, 380]
+    }
+  ],
+  "connections": {
+    "Webhook Node": {
+      "main": [
+        [
+          {
+            "node": "Google Calendar Node",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Loop Over Students",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Students": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Broadcast",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
